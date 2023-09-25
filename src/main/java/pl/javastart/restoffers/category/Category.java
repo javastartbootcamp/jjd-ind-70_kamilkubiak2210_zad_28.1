@@ -1,6 +1,7 @@
-package pl.javastart.restoffers;
+package pl.javastart.restoffers.category;
 
 import jakarta.persistence.*;
+import pl.javastart.restoffers.offer.Offer;
 
 import java.util.ArrayList;
 import java.util.List;

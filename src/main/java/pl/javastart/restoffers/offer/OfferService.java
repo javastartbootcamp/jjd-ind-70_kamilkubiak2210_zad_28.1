@@ -1,4 +1,4 @@
-package pl.javastart.restoffers;
+package pl.javastart.restoffers.offer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +38,9 @@ class OfferService {
     }
 
     OfferDto saveOffer(OfferDto offerDto) {
-        Offer savedOffer = offerRepository.save(offerDtoMapper.map(offerDto));
+        Offer offer = new Offer();
+        offerDtoMapper.fillFields(offer, offerDto);
+        Offer savedOffer = offerRepository.save(offer);
         return offerDtoMapper.map(savedOffer);
     }
 

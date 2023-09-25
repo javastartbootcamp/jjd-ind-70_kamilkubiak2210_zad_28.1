@@ -1,4 +1,4 @@
-package pl.javastart.restoffers;
+package pl.javastart.restoffers.category;
 
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,9 @@ public class CategoryService {
     }
 
     CategoryDto saveCategory(CategoryDto categoryDto) {
-        Category savedCategory = categoryRepository.save(categoryDtoMapper.map(categoryDto));
+        Category category = new Category();
+        categoryDtoMapper.fillFields(category, categoryDto);
+        Category savedCategory = categoryRepository.save(category);
         return categoryDtoMapper.map(savedCategory);
     }
 

@@ -1,4 +1,4 @@
-package pl.javastart.restoffers;
+package pl.javastart.restoffers.category;
 
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,9 @@ public class CategoryDtoMapper {
         return dto;
     }
 
-    Category map(CategoryDto dto) {
-        Category category = new Category();
-        category.setTitle(dto.getName());
-        category.setDescription(dto.getDescription());
-        category.setOffers(new ArrayList<>());
-        return category;
+    void fillFields(Category entity, CategoryDto dto) {
+        entity.setTitle(dto.getName());
+        entity.setDescription(dto.getDescription());
+        entity.setOffers(new ArrayList<>());
     }
 }

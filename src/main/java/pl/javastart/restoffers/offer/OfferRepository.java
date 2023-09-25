@@ -1,4 +1,4 @@
-package pl.javastart.restoffers;
+package pl.javastart.restoffers.offer;
 
 import org.springframework.data.repository.ListCrudRepository;
 

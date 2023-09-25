@@ -1,4 +1,4 @@
-package pl.javastart.restoffers;
+package pl.javastart.restoffers.offer;
 
 public class OfferDto {
     private Long id;

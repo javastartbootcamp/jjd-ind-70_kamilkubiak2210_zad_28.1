@@ -1,5 +1,6 @@
-package pl.javastart.restoffers;
+package pl.javastart.restoffers.offer;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,12 +21,12 @@ public class OfferController {
         return offerService.countOffers();
     }
 
-    @GetMapping()
-    ResponseEntity<List<OfferDto>> showAllOrByTitle(@RequestParam(required = false) String title) {
+    @GetMapping("")
+    List<OfferDto> showAllOrByTitle(@RequestParam(required = false) String title) {
         if (title == null) {
-            return ResponseEntity.ok(offerService.offerList());
+            return offerService.offerList();
         } else {
-            return ResponseEntity.ok(offerService.findAllByTitle(title));
+            return offerService.findAllByTitle(title);
         }
     }
 
@@ -34,9 +35,10 @@ public class OfferController {
         return offerService.findById(id).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping()
-    ResponseEntity<OfferDto> saveOffer(@RequestBody OfferDto offerDto) {
-        return ResponseEntity.ok(offerService.saveOffer(offerDto));
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
+    OfferDto saveOffer(@RequestBody OfferDto offerDto) {
+        return offerService.saveOffer(offerDto);
     }
 
     @DeleteMapping("/{id}")

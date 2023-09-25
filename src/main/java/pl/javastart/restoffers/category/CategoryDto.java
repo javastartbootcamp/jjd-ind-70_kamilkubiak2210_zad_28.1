@@ -1,4 +1,4 @@
-package pl.javastart.restoffers;
+package pl.javastart.restoffers.category;
 
 public class CategoryDto {
     private String name;

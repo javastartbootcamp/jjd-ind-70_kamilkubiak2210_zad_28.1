@@ -1,7 +1,9 @@
-package pl.javastart.restoffers;
+package pl.javastart.restoffers.category;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.javastart.restoffers.offer.OfferDto;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,18 +18,19 @@ public class CategoryController {
     }
 
     @GetMapping("/names")
-    ResponseEntity<List<String>> allCategoriesNames() {
-        return ResponseEntity.ok(categoryService.findAll().stream().map(CategoryDto::getName).toList());
+    List<String> allCategoriesNames() {
+        return categoryService.findAll().stream().map(CategoryDto::getName).toList();
     }
 
-    @GetMapping()
-    ResponseEntity<List<CategoryDto>> allCategories() {
-        return ResponseEntity.ok(categoryService.findAll());
+    @GetMapping("")
+    List<CategoryDto> allCategories() {
+        return categoryService.findAll();
     }
 
-    @PostMapping()
-    ResponseEntity<CategoryDto> saveCategory(@RequestBody CategoryDto categoryDto) {
-        return ResponseEntity.ok(categoryService.saveCategory(categoryDto));
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
+    CategoryDto saveCategory(@RequestBody CategoryDto categoryDto) {
+        return categoryService.saveCategory(categoryDto);
     }
 
     @DeleteMapping("/{id}")

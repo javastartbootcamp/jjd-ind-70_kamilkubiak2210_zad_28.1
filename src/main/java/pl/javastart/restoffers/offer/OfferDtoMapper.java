@@ -1,6 +1,8 @@
-package pl.javastart.restoffers;
+package pl.javastart.restoffers.offer;
 
 import org.springframework.stereotype.Service;
+import pl.javastart.restoffers.category.Category;
+import pl.javastart.restoffers.category.CategoryRepository;
 
 @Service
 public class OfferDtoMapper {
@@ -21,15 +23,12 @@ public class OfferDtoMapper {
         return dto;
     }
 
-    Offer map(OfferDto dto) {
-        Offer offer = new Offer();
-        offer.setId(dto.getId());
-        offer.setTitle(dto.getTitle());
-        offer.setDescription(dto.getDescription());
-        offer.setImgUrl(dto.getImgUrl());
-        offer.setPrice(dto.getPrice());
+    void fillFields(Offer entity, OfferDto dto) {
+        entity.setTitle(dto.getTitle());
+        entity.setDescription(dto.getDescription());
+        entity.setImgUrl(dto.getImgUrl());
+        entity.setPrice(dto.getPrice());
         Category byTitleIgnoreCase = categoryRepository.findByTitleIgnoreCase(dto.getCategory());
-        offer.setCategory(byTitleIgnoreCase);
-        return offer;
+        entity.setCategory(byTitleIgnoreCase);
     }
 }
